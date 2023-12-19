@@ -1,0 +1,12 @@
+{% block Contenido%}
+    
+    <div style="background-color: rgba(117, 113, 106, 0.774);">
+        {% if comentarios %}
+            <ul>
+                {% for comentario in comentarios %}
+                    <li>Comentario de {{comentario.nombre}}: {{comentario.comentario}}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+{% endblock  %}

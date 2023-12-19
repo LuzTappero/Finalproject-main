@@ -1,0 +1,12 @@
+{% block Contenido%}
+    
+    <div style="background-color: rgba(117, 113, 106, 0.774);">
+        {% if blogs %}
+            <ul>
+                {% for blog in blogs %}
+                    <li>{{blog.titulo}}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+{% endblock  %}
