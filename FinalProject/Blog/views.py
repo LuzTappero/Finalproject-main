@@ -83,4 +83,11 @@ def buscar_comentario(request):
     else:
         return render (request, 'Blog/comentario_list.html', context={})
 
+def eliminar_blog(request, id):
+    if request.method == "POST":
 
+        blog= Blog.objects.get(id=id)
+        blog.delete()
+
+        blogs= Blog.objects.all()
+        return render (request, 'Blog/blog_list.html', {"blogs": blogs})    

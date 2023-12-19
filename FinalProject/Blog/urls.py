@@ -10,4 +10,5 @@ urlpatterns = [
     path ('crear_comentario/', views.crear_comentario, name='crear_comentario'), #type:ignore
     path ('buscar_comentario/', views.buscar_comentario, name='buscar_comentario'), #type:ignore
     path ('buscar_blogs_todos/', views.buscar_blog_todos, name='buscar_blogs_todos'),
+    path ('eliminar_blog/<int:id>', views.eliminar_blog, name='eliminar_blog'), #type:ignore
 ]
