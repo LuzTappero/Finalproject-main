@@ -3,14 +3,19 @@
         {% if blogs %}
             <ul>
                 {% for blog in blogs %}
-                    <li>{{blog.titulo}}</li>
-                    <div>
-                        <form action="{% url 'eliminar_blog' blog.id %}" method="POST"> {% csrf_token %}
+                    <li>{{blog.titulo}} {{blog.descripcion}} {{blog.autor}} {{blog.categoria}}</li>
+                    <!-- <div>
+                        <form action=" url 'eliminar_blog' blog.id %}" method="POST"> {% csrf_token %}
                             <button type="submit">Eliminar</button>
                         </form>
-                    </div>
+                        <button>
+                            <a href=" url 'editar_blog' blog.id %}">Editar</a>
+                        </button>
+                    </div> -->
                 {% endfor %}
             </ul>
+        {% else %}
+        <h1>No existen blogs en la BBDD</h1>
         {% endif %}
     </div>
 {% endblock  %}

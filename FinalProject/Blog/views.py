@@ -1,8 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Blog, Comentario
 from .forms import FormularioBlog, FormularioBuscarBlog, FormularioComentario, FormularioBuscarComentario
-
+from django.views.generic import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import DeleteView, UpdateView, CreateView
 # def Blog(request):
 #     return HttpResponse ('Bienvenidos')
 
@@ -91,3 +93,62 @@ def eliminar_blog(request, id):
 
         blogs= Blog.objects.all()
         return render (request, 'Blog/blog_list.html', {"blogs": blogs})    
+
+def editar_blog(request, id):
+
+
+    blog = Blog.objects.get(id=id)
+
+    if request.method == "POST":
+        miFormulario= FormularioBlog(request.POST)
+
+        if miFormulario.is_valid():
+            informacion= miFormulario.cleaned_data
+            
+            blog.titulo= informacion["titulo"]
+            blog.descripcion = informacion["informacion"]
+            blog.autor = informacion["autor"]
+            blog.categoria = informacion["categoria"]
+            blog.save()
+
+            return redirect('Home:Home')
+        return render (request, 'Blog/editar_blog_formulario.html', {"form": miFormulario})
+    else:
+
+        miFormulario = FormularioBlog (initial={
+            "titulo": blog.titulo,
+            "descripcion": blog.descripcion,
+            "autor": blog.autor,
+            "categoria":blog.categoria
+            })
+        return render (request, 'Blog/editar_blog_formulario.html', {"form": miFormulario,"id":blog.id}) # type: ignore
+    
+####VISTAS BASADAS EN CLASES####
+
+class BlogList(ListView):
+    
+    model= Blog
+    template_name= 'Blog/blog_list.html'
+    context_object_name='blogs'
+
+class BlogDetail(DetailView):
+    model= Blog
+    template_name='Blog/blog_detail_vbc.html'
+    context_object_name='blog'
+
+class BlogCreate(CreateView):
+    model= Blog
+    template_name='Blog/crear_blog_formulario.html'
+    fields= ["titulo", "descripcion", "autor", "categoria"]
+    success_url= '/buscar_blogs_todos/'
+
+class BlogUpdate(UpdateView):
+    model= Blog
+    template = 'Blog/blod_update_vbc.html'
+    fields=["titulo", "contenido", "autor", "categoria"]
+    success_url= '/buscar_blogs_todos/'
+
+class BlogDelete(UpdateView):
+    model= Blog
+    template = 'Blog/blod_delete_vbc.html'
+    success_url= '/buscar_blogs_todos/'
