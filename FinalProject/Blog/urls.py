@@ -5,7 +5,7 @@ from . import views
 
 urlpatterns = [
     #PATH CRUD
-    # path('Blog', views.Blog, name='Blog')
+    path ('Blogs/', views.Blogs, name='Blogs'), #type:ignore
     path ('crear_blog/', views.crear_blog, name='crear_blog'), #type:ignore
     path ('buscar_blog/', views.buscar_blog, name='buscar_blog'), #type:ignore
     path ('crear_comentario/', views.crear_comentario, name='crear_comentario'), #type:ignore

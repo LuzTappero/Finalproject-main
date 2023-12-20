@@ -5,8 +5,9 @@ from .forms import FormularioBlog, FormularioBuscarBlog, FormularioComentario, F
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import DeleteView, UpdateView, CreateView
-# def Blog(request):
-#     return HttpResponse ('Bienvenidos')
+
+def Blogs(request):
+    return render (request, 'Blog/blog.html')
 
 def crear_blog(request):
     if request.method == "GET":

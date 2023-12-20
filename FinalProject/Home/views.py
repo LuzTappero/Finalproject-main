@@ -4,9 +4,11 @@ from .forms import UserCreationFormulario, UserEditionFormulario
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.views import PasswordChangeView
+from django.contrib.auth.decorators import login_required
+
 
 def Home(request):
-    return HttpResponse ('Bienvenidos')
+    return render (request, 'Home/index.html')
 
 def registro_view(request):
 
