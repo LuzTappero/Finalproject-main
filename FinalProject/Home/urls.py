@@ -4,6 +4,7 @@ from django.urls import path
 from . import views
 from django.contrib.auth.views import LogoutView
 
+
 urlpatterns = [
     path('', views.Home, name='Home'),
     path('registro/', views.registro_view, name='registro'), #type:ignore

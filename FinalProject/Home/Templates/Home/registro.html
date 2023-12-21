@@ -1,20 +1,8 @@
+{% extends 'Blog/blog.html' %}
 
 {% block contenidoQueCambia %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro</title>
-    <style>
-        .error-list {
-            color: red;
-        }
-    </style>
-</head>
 
-<body style="background-color: rgb(227, 224, 225);">
+<body style="background-color: rgba(216, 203, 186, 0.774);">
 <h2>Registro</h2>
 <form action="/registro/" method="POST">
     {% csrf_token %}

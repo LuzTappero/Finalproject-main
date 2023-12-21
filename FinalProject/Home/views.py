@@ -54,8 +54,8 @@ def login_view(request):
             login(request, modelo)
 
             return render(request,
-                'Home/inicio.html',
-                {"mensaje": f"Bienvenido{usuario}"}) 
+                'Home/inicio.html', 
+                {"mensaje": f"Bienvenido {usuario}"}) 
         else:
             return render(
                 request,

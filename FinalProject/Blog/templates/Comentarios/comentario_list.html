@@ -2,22 +2,21 @@
 
 {% block contenidoQueCambia %}
     <div style="background-color: rgba(216, 203, 186, 0.774);">
-        {% if blogs %}
+        {% if comentarios %}
             <ul>
-                {% for blog in blogs %}
+                {% for comentario in comentarios %}
                     <li>
                         <div class="blog-item">
-                            <h3>{{ blog.titulo }}</h3>
-                            <p>{{ blog.descripcion }}</p>
-                            <p>Autor: {{ blog.autor }}</p>
-                            <p>Categoría: {{ blog.categoria }}</p>
+                            <h3>{{ comentario.nombre }}</h3>
+                            <p>{{ comentario.edad }}</p>
+                            <p>Comentario: {{ comentario.comentario }}</p>
                             <div class="buttons-container">
-                                <form action="{% url 'blog_update' blog.id %}" method="POST">
+                                <form action="{% url 'comentario_update' comentario.id %}" method="POST">
                                     {% csrf_token %}
                                     <button type="submit" class="edit-button">Editar</button>
                                 </form>
                                 <button class="delete-button">
-                                    <a href="{% url 'blog_delete' blog.id %}">Eliminar</a>
+                                    <a href="{% url 'comentario_delete' comentario.id %}">Eliminar</a>
                                 </button>
                             </div>
                         </div>
@@ -25,7 +24,7 @@
                 {% endfor %}
             </ul>
         {% else %}
-        <h1>No existen blogs en la BBDD</h1>
+        <h1>No existen comentarios en la BBDD</h1>
         {% endif %}
     </div>
 
